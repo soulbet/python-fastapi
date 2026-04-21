@@ -1,4 +1,3 @@
-print("FASTAPI FILE LOADED")
 from typing import Annotated, Optional
 
 from fastapi import Depends, FastAPI, HTTPException, status
@@ -57,6 +56,7 @@ def fake_decode_token(token):
 
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
+    print("token:",token)
     user = fake_decode_token(token)
     if not user:
         raise HTTPException(
